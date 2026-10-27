@@ -1,0 +1,36 @@
+{
+  "profile": {
+    "name": "Lucas Martínez",
+    "username": "@lucas.music",
+    "avatar": "🎧",
+    "bio": "Fanático del rock de los 70 y 80, con escapadas al pop, la electrónica y el jazz. Siempre con auriculares puestos.",
+    "favoriteGenres": ["Rock", "Pop", "Electronic"],
+    "joined": "2024-03-12T00:00:00.000Z"
+  },
+  "library": [
+    {"id":"demo-1","title":"Bohemian Rhapsody","artist":"Queen","album":"A Night at the Opera","genre":"Rock","year":1975,"cover":"","durationMs":354000,"previewUrl":"","status":"Favorito","favorite":true,"rating":5,"review":"Una obra maestra. Seis minutos que no se sienten.","addedAt":"2025-01-10T12:00:00.000Z"},
+    {"id":"demo-2","title":"Hotel California","artist":"Eagles","album":"Hotel California","genre":"Rock","year":1976,"cover":"","durationMs":391000,"previewUrl":"","status":"Escuchado","favorite":true,"rating":5,"review":"El solo final es de otro planeta.","addedAt":"2025-01-15T12:00:00.000Z"},
+    {"id":"demo-3","title":"Blinding Lights","artist":"The Weeknd","album":"After Hours","genre":"Pop","year":2019,"cover":"","durationMs":200000,"previewUrl":"","status":"Escuchado","favorite":true,"rating":4,"review":"","addedAt":"2025-02-02T12:00:00.000Z"},
+    {"id":"demo-4","title":"De Música Ligera","artist":"Soda Stereo","album":"Canción Animal","genre":"Rock","year":1990,"cover":"","durationMs":212000,"previewUrl":"","status":"Favorito","favorite":true,"rating":5,"review":"Himno absoluto del rock argentino.","addedAt":"2025-02-10T12:00:00.000Z"},
+    {"id":"demo-5","title":"Smells Like Teen Spirit","artist":"Nirvana","album":"Nevermind","genre":"Alternative","year":1991,"cover":"","durationMs":301000,"previewUrl":"","status":"Escuchado","favorite":false,"rating":4,"review":"","addedAt":"2025-02-20T12:00:00.000Z"},
+    {"id":"demo-6","title":"Billie Jean","artist":"Michael Jackson","album":"Thriller","genre":"Pop","year":1982,"cover":"","durationMs":294000,"previewUrl":"","status":"Escuchado","favorite":true,"rating":5,"review":"Ese bajo es imposible de olvidar.","addedAt":"2025-03-01T12:00:00.000Z"},
+    {"id":"demo-7","title":"Get Lucky","artist":"Daft Punk","album":"Random Access Memories","genre":"Electronic","year":2013,"cover":"","durationMs":369000,"previewUrl":"","status":"Escuchando","favorite":false,"rating":4,"review":"","addedAt":"2025-03-12T12:00:00.000Z"},
+    {"id":"demo-8","title":"Wish You Were Here","artist":"Pink Floyd","album":"Wish You Were Here","genre":"Rock","year":1975,"cover":"","durationMs":334000,"previewUrl":"","status":"Escuchando","favorite":true,"rating":5,"review":"","addedAt":"2025-03-20T12:00:00.000Z"},
+    {"id":"demo-9","title":"Lose Yourself","artist":"Eminem","album":"8 Mile","genre":"Hip-Hop/Rap","year":2002,"cover":"","durationMs":326000,"previewUrl":"","status":"Quiero escuchar","favorite":false,"rating":0,"review":"","addedAt":"2025-04-01T12:00:00.000Z"},
+    {"id":"demo-10","title":"So What","artist":"Miles Davis","album":"Kind of Blue","genre":"Jazz","year":1959,"cover":"","durationMs":562000,"previewUrl":"","status":"Quiero escuchar","favorite":false,"rating":0,"review":"","addedAt":"2025-04-05T12:00:00.000Z"},
+    {"id":"demo-11","title":"Despacito","artist":"Luis Fonsi","album":"Vida","genre":"Latin","year":2017,"cover":"","durationMs":229000,"previewUrl":"","status":"Quiero escuchar","favorite":false,"rating":0,"review":"","addedAt":"2025-04-08T12:00:00.000Z"}
+  ],
+  "collections": [
+    {"id":"c1","name":"Rock clásico","trackIds":["demo-1","demo-2","demo-8","demo-5"]},
+    {"id":"c2","name":"Para entrenar","trackIds":["demo-7","demo-9","demo-3"]},
+    {"id":"c3","name":"Noches tranquilas","trackIds":["demo-10","demo-8","demo-4"]}
+  ],
+  "activity": [
+    {"id":"a1","text":"Agregaste \"Despacito\" a tu biblioteca","date":"2025-04-08T12:00:00.000Z"},
+    {"id":"a2","text":"Agregaste \"So What\" a la playlist \"Noches tranquilas\"","date":"2025-04-06T12:00:00.000Z"},
+    {"id":"a3","text":"Puntuaste \"Wish You Were Here\" con 5 estrellas","date":"2025-04-02T12:00:00.000Z"},
+    {"id":"a4","text":"Marcaste \"Billie Jean\" como favorito","date":"2025-03-25T12:00:00.000Z"},
+    {"id":"a5","text":"Creaste la playlist \"Para entrenar\"","date":"2025-03-14T12:00:00.000Z"},
+    {"id":"a6","text":"Escribiste una reseña de \"De Música Ligera\"","date":"2025-02-12T12:00:00.000Z"}
+  ]
+}
