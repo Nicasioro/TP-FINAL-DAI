@@ -22,7 +22,7 @@ function AddToPlaylist({ col }) {
   );
 }
 
-export default function Collections() {
+export default function Playlist() {
   const { collections, library, createCollection, deleteCollection, removeFromCollection } = useMusic();
   const [name, setName] = useState('');
 

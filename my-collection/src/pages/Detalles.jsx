@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useMusic } from '../context/MusicContext.jsx';
 import { getTrack } from '../services/api.js';
-import { Cover } from '../components/TrackCard.jsx';
-import ItemControls from '../components/ItemControls.jsx';
-import State from '../components/State.jsx';
-import { fmtDuration } from '../utils/stats.js';
+import { Cover } from '../components/TarjetaCancion.jsx';
+import Controles from '../components/Controles.jsx';
+import { fmtDuration } from '../utils/Estadisticas.js';
 
 export default function Detail() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const goBack = () => (location.key !== 'default' ? navigate(-1) : navigate('/'));
   const { library } = useMusic();
   const saved = library.find((i) => i.id === id);
   const [apiTrack, setApiTrack] = useState(null);
@@ -19,7 +21,6 @@ export default function Detail() {
     let off = false;
     setApiTrack(null);
     setError('');
-    // Los temas demo (id "demo-*") no existen en la API: se usan los datos guardados
     if (!/^\d+$/.test(id)) { setLoading(false); return; }
     setLoading(true);
     getTrack(id)
@@ -29,13 +30,12 @@ export default function Detail() {
     return () => { off = true; };
   }, [id]);
 
-  // Se combinan los datos de la API con los del usuario (si ya lo tiene en la biblioteca)
   const track = apiTrack ? { ...apiTrack } : saved;
 
   return (
     <>
-      <Link to="/explorar" className="muted">← Volver</Link>
-      <State loading={loading} error={!track && error} empty={!track} emptyText="No encontramos este contenido.">
+      <button type="button" className="btn ghost small-btn" onClick={goBack}>← Volver</button>
+    
         {track && (
           <div className="detail">
             <Cover track={track} size="big" />
@@ -56,11 +56,10 @@ export default function Detail() {
               </p>
               {track.previewUrl ? <audio controls src={track.previewUrl} /> : <p className="muted small">Sin preview de audio.</p>}
               <h3>Mi colección</h3>
-              <ItemControls track={track} />
+              <Controles track={track} />
             </div>
           </div>
         )}
-      </State>
     </>
   );
 }

@@ -3,8 +3,8 @@ export const STATUSES = ['Quiero escuchar', 'Escuchando', 'Escuchado', 'Favorito
 const count = (arr) => arr.reduce((acc, k) => { acc[k] = (acc[k] || 0) + 1; return acc; }, {});
 const top = (obj) => Object.entries(obj).sort((a, b) => b[1] - a[1])[0] || ['—', 0];
 
-// Todas las estadísticas se calculan a partir de los datos del usuario
-export function computeStats(library, collections) {
+
+export function computeEstadisticas(library, collections) {
   const byStatus = STATUSES.map((s) => ({ label: s, value: library.filter((i) => i.status === s).length }));
   const genres = count(library.map((i) => i.genre));
   const artists = count(library.map((i) => i.artist));

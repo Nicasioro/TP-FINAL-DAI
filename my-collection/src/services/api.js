@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const http = axios.create({ baseURL: 'https://itunes.apple.com', timeout: 10000 });
 
-// Convierte la respuesta de iTunes al modelo interno de la app
 export const normalize = (r) => ({
   id: String(r.trackId),
   title: r.trackName,

@@ -1,6 +1,6 @@
-import { fmtDate } from '../utils/stats.js';
+import { fmtDate } from '../utils/Estadisticas.js';
 
-export default function ActivityList({ items }) {
+export default function ListaActividades({ items }) {
   if (!items.length) return <p className="muted">Sin actividad todavía.</p>;
   return (
     <ul className="activity">

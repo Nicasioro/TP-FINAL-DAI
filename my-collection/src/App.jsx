@@ -1,26 +1,26 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
+import Navegacion from './components/Navegacion.jsx';
 import Home from './pages/Home.jsx';
-import Explore from './pages/Explore.jsx';
-import Detail from './pages/Detail.jsx';
-import Library from './pages/Library.jsx';
-import Collections from './pages/Collections.jsx';
-import Stats from './pages/Stats.jsx';
-import Profile from './pages/Profile.jsx';
+import Buscador from './pages/Buscador.jsx';
+import Detalles from './pages/Detalles.jsx';
+import Biblioteca from './pages/Biblioteca.jsx';
+import Playlist from './pages/Playlist.jsx';
+import Estadisticas from './pages/Estadisticas.jsx';
+import Perfil from './pages/Perfil.jsx';
 
 export default function App() {
   return (
     <>
-      <Navbar />
+      <Navegacion />
       <main className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/explorar" element={<Explore />} />
-          <Route path="/detalle/:id" element={<Detail />} />
-          <Route path="/biblioteca" element={<Library />} />
-          <Route path="/colecciones" element={<Collections />} />
-          <Route path="/estadisticas" element={<Stats />} />
-          <Route path="/perfil" element={<Profile />} />
+          <Route path="/explorar" element={<Buscador />} />
+          <Route path="/detalle/:id" element={<Detalles />} />
+          <Route path="/biblioteca" element={<Biblioteca />} />
+          <Route path="/colecciones" element={<Playlist />} />
+          <Route path="/estadisticas" element={<Estadisticas />} />
+          <Route path="/perfil" element={<Perfil />} />
           <Route path="*" element={<div className="state">Página no encontrada. <Link to="/">Volver al inicio</Link></div>} />
         </Routes>
       </main>

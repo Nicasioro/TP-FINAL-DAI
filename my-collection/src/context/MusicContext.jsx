@@ -1,10 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import initial from '../data/initialData.json';
+import { searchTracks } from '../services/api.js';
 
 const MusicContext = createContext();
 const KEY = 'my-collection-music-v1';
 
-// Si hay datos guardados en localStorage los usa; si no, arranca con el JSON inicial
+
 const load = () => {
   try {
     const saved = localStorage.getItem(KEY);
@@ -22,16 +23,35 @@ export function MusicProvider({ children }) {
   const [data, setData] = useState(load);
 
   useEffect(() => {
-    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { /* sin espacio */ }
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch {}
   }, [data]);
 
-  // Agrega una entrada a la actividad reciente
+  const tried = useRef(new Set());
+  useEffect(() => {
+    const missing = data.library.filter((i) => !i.cover && !tried.current.has(i.id));
+    if (!missing.length) return;
+    missing.forEach((i) => tried.current.add(i.id));
+    (async () => {
+      for (const it of missing) {
+        try {
+          const [r] = await searchTracks(`${it.title} ${it.artist}`, 1);
+          if (!r || !r.cover) continue;
+          setData((d) => ({
+            ...d,
+            library: d.library.map((x) => (x.id === it.id ? { ...x, cover: r.cover, previewUrl: x.previewUrl || r.previewUrl } : x)),
+          }));
+        } catch { }
+      }
+    })();
+  }, [data.library]);
+
+ 
   const withLog = (d, text) => ({
     ...d,
     activity: [{ id: 'a' + Date.now(), text, date: new Date().toISOString() }, ...d.activity].slice(0, 30),
   });
 
-  const addToLibrary = (t, status) =>
+  const addToBiblioteca = (t, status) =>
     setData((d) => d.library.some((i) => i.id === t.id) ? d
       : withLog({ ...d, library: [newItem(t, status), ...d.library] }, `Agregaste "${t.title}" a tu biblioteca`));
 
@@ -64,7 +84,7 @@ export function MusicProvider({ children }) {
   const deleteCollection = (id) =>
     setData((d) => ({ ...d, collections: d.collections.filter((c) => c.id !== id) }));
 
-  // Si el tema no está en la biblioteca, se agrega automáticamente
+
   const addToCollection = (colId, track) =>
     setData((d) => {
       const c = d.collections.find((x) => x.id === colId);
@@ -87,7 +107,7 @@ export function MusicProvider({ children }) {
   const resetData = () => setData(initial);
 
   const value = {
-    ...data, addToLibrary, removeFromLibrary, updateItem, toggleFavorite,
+    ...data, addToBiblioteca, removeFromLibrary, updateItem, toggleFavorite,
     createCollection, deleteCollection, addToCollection, removeFromCollection, updateProfile, resetData,
   };
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;

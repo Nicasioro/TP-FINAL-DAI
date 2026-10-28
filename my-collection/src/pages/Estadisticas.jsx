@@ -1,6 +1,6 @@
 import { useMusic } from '../context/MusicContext.jsx';
-import { computeStats } from '../utils/stats.js';
-import Stars from '../components/Stars.jsx';
+import { computeEstadisticas } from '../utils/Estadisticas.js';
+import Puntuacion from '../components/Puntuacion.jsx';
 
 function Bars({ data }) {
   const max = Math.max(1, ...data.map((d) => d.value));
@@ -17,9 +17,9 @@ function Bars({ data }) {
   );
 }
 
-export default function Stats() {
+export default function Estadisticas() {
   const { library, collections } = useMusic();
-  const s = computeStats(library, collections);
+  const s = computeEstadisticas(library, collections);
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function Stats() {
           <h3>Top de favoritos</h3>
           {s.favorites.length ? (
             <ol className="tracklist">
-              {s.favorites.slice(0, 5).map((t) => <li key={t.id}><span>{t.title} <span className="muted">— {t.artist}</span></span><Stars value={t.rating} /></li>)}
+              {s.favorites.slice(0, 5).map((t) => <li key={t.id}><span>{t.title} <span className="muted">— {t.artist}</span></span><Puntuacion value={t.rating} /></li>)}
             </ol>
           ) : <p className="muted">Aún no marcaste favoritos.</p>}
         </section>

@@ -1,6 +1,6 @@
-export default function Stars({ value = 0, onChange }) {
+export default function Puntuacion({ value = 0, onChange }) {
   return (
-    <span className="stars">
+    <span className="Puntuacion">
       {[1, 2, 3, 4, 5].map((n) => (
         <button
           key={n} type="button" disabled={!onChange}

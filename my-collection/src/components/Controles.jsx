@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useMusic } from '../context/MusicContext.jsx';
-import { STATUSES } from '../utils/stats.js';
-import Stars from './Stars.jsx';
+import { STATUSES } from '../utils/Estadisticas.js';
+import Puntuacion from './Puntuacion.jsx';
 
-export default function ItemControls({ track }) {
-  const { library, collections, addToLibrary, removeFromLibrary, updateItem, toggleFavorite, addToCollection } = useMusic();
+export default function Controles({ track }) {
+  const { library, collections, addToBiblioteca, removeFromBiblioteca, updateItem, toggleFavorite, addToCollection } = useMusic();
   const item = library.find((i) => i.id === track.id);
   const [review, setReview] = useState(item?.review || '');
   const [colId, setColId] = useState('');
 
   useEffect(() => setReview(item?.review || ''), [item?.review]);
 
-  if (!item) return <button className="btn" onClick={() => addToLibrary(track)}>+ Agregar a biblioteca</button>;
+  if (!item) return <button className="btn" onClick={() => addToBiblioteca(track)}>+ Agregar a biblioteca</button>;
 
   const saveReview = (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ export default function ItemControls({ track }) {
           {item.favorite ? '♥ Favorito' : '♡ Favorito'}
         </button>
       </div>
-      <Stars value={item.rating} onChange={(n) => updateItem(item.id, { rating: n }, `Puntuaste "${item.title}" con ${n} estrellas`)} />
+      <Puntuacion value={item.rating} onChange={(n) => updateItem(item.id, { rating: n }, `Puntuaste "${item.title}" con ${n} estrellas`)} />
       <form onSubmit={saveReview}>
         <textarea value={review} onChange={(e) => setReview(e.target.value)} placeholder="Tu reseña personal..." rows={2} />
         <button className="btn small-btn">Guardar reseña</button>
@@ -44,7 +44,7 @@ export default function ItemControls({ track }) {
         </select>
         <button className="btn small-btn" disabled={!colId}>Agregar</button>
       </form>
-      <button className="btn danger small-btn" onClick={() => removeFromLibrary(item.id)}>Eliminar de biblioteca</button>
+      <button className="btn danger small-btn" onClick={() => removeFromBiblioteca(item.id)}>Eliminar de biblioteca</button>
     </div>
   );
 }

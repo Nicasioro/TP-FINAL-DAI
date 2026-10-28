@@ -6,7 +6,7 @@ export function Cover({ track, size = '' }) {
     : <div className={`cover placeholder ${size}`}>{track.title?.[0] || '♪'}</div>;
 }
 
-export default function TrackCard({ track, children }) {
+export default function TarjetaCancion({ track, children }) {
   return (
     <article className="card">
       <Link to={`/detalle/${track.id}`} className="card-link">

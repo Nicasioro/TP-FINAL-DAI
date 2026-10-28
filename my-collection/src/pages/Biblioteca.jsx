@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMusic } from '../context/MusicContext.jsx';
-import { STATUSES } from '../utils/stats.js';
-import TrackCard from '../components/TrackCard.jsx';
-import ItemControls from '../components/ItemControls.jsx';
-import State from '../components/State.jsx';
+import { STATUSES } from '../utils/Estadisticas.js';
+import TarjetaCancion from '../components/TarjetaCancion.jsx';
+import Controles from '../components/Controles.jsx';
 
-export default function Library() {
+
+export default function Biblioteca() {
   const { library } = useMusic();
   const [status, setStatus] = useState('');
   const [text, setText] = useState('');
@@ -36,16 +36,14 @@ export default function Library() {
         </select>
         <Link className="btn" to="/explorar">+ Agregar más</Link>
       </div>
-      <State empty={!shown.length} emptyText="No hay temas que coincidan con el filtro.">
         <div className="grid wide">
           {shown.map((t) => (
-            <TrackCard key={t.id} track={t}>
+            <TarjetaCancion key={t.id} track={t}>
               <span className="badge status">{t.status}</span>
-              <ItemControls track={t} />
-            </TrackCard>
+              <Controles track={t} />
+            </TarjetaCancion>
           ))}
         </div>
-      </State>
     </>
   );
 }

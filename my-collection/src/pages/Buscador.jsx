@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useMusic } from '../context/MusicContext.jsx';
 import { searchTracks } from '../services/api.js';
-import TrackCard from '../components/TrackCard.jsx';
-import State from '../components/State.jsx';
+import TarjetaCancion from '../components/TarjetaCancion.jsx';
 
-export default function Explore() {
+
+export default function Buscador() {
   const [params, setParams] = useSearchParams();
   const q = params.get('q') || '';
-  const { library, addToLibrary } = useMusic();
+  const { library, addToBiblioteca } = useMusic();
   const [text, setText] = useState(q);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -60,17 +60,15 @@ export default function Explore() {
       </form>
 
       {!q ? <div className="state">Escribí algo para empezar a buscar 🎧</div> : (
-        <State loading={loading} error={error} empty={!shown.length} emptyText={`No encontramos resultados para "${q}".`}>
           <div className="grid">
             {shown.map((t) => (
-              <TrackCard key={t.id} track={t}>
+              <TarjetaCancion key={t.id} track={t}>
                 {library.some((i) => i.id === t.id)
                   ? <span className="muted small">✓ En tu biblioteca</span>
-                  : <button className="btn small-btn" onClick={() => addToLibrary(t)}>+ Biblioteca</button>}
-              </TrackCard>
+                  : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
+              </TarjetaCancion>
             ))}
           </div>
-        </State>
       )}
     </>
   );
