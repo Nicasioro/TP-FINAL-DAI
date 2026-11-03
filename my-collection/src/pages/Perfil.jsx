@@ -6,6 +6,7 @@ import { fileToAvatar } from '../utils/image.js';
 import TarjetaCancion from '../components/TarjetaCancion.jsx';
 import ListaActividades from '../components/ListaActividades.jsx';
 import Avatar from '../components/Avatar.jsx';
+import './Perfil.css';
 
 export default function Perfil() {
   const { profile, library, collections, activity, updateProfile, resetData } = useMusic();
@@ -43,7 +44,7 @@ export default function Perfil() {
   };
 
   return (
-    <>
+    <div className="profile-page">
       <section className="profile-head card">
         <Avatar value={profile.avatar} size={96} />
         <div className="grow">
@@ -125,6 +126,6 @@ export default function Perfil() {
       <button className="btn danger small-btn" onClick={() => window.confirm('¿Restaurar los datos iniciales?') && resetData()}>
         Restaurar datos iniciales
       </button>
-    </>
+    </div>
   );
 }

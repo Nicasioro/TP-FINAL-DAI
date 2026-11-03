@@ -1,0 +1,52 @@
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.card-link {
+    display: block;
+}
+
+.card h3 {
+    font-size: 1rem;
+    margin: 8px 0 0;
+}
+
+.card p {
+    margin: 2px 0 6px;
+}
+
+.card-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card p,
+.card h3 {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.cover {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+}
+
+.cover.placeholder {
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+.cover.big {
+    max-width: 340px;
+}

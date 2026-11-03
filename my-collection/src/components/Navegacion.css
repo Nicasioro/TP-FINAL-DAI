@@ -1,0 +1,49 @@
+.mc-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #0b0d13f2;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+}
+
+.mc-logo {
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.mc-header .mc-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.mc-header .mc-nav a {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: var(--muted);
+}
+
+.mc-header .mc-nav a:hover,
+.mc-header .mc-nav a.active {
+    background: var(--card);
+    color: var(--text);
+}
+
+.mc-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .9rem;
+    color: var(--muted);
+}

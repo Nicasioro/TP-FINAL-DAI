@@ -1,0 +1,18 @@
+.bar-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 28px;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+  font-size: .9rem;
+}
+.bar {
+  background: #0f1117;
+  border-radius: 99px;
+  height: 10px;
+  overflow: hidden;
+}
+.bar div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}

@@ -1,0 +1,12 @@
+.search-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-page .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}

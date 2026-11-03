@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMusic } from '../context/MusicContext.jsx';
+import './Playlist.css';
 
 function AddToPlaylist({ col }) {
   const { library, addToCollection } = useMusic();
@@ -32,7 +33,7 @@ export default function Playlist() {
   };
 
   return (
-    <>
+    <div className="playlist-page">
       <h1>Mis playlists</h1>
       <form className="row filters" onSubmit={submit}>
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Nombre de la nueva playlist..." />
@@ -43,7 +44,7 @@ export default function Playlist() {
         {collections.map((c) => {
           const tracks = c.trackIds.map((id) => library.find((i) => i.id === id)).filter(Boolean);
           return (
-            <section key={c.id} className="card playlist">
+            <section key={c.id} className="card playlist-card">
               <div className="row between">
                 <h3>🎶 {c.name} <span className="muted small">({tracks.length})</span></h3>
                 <button className="btn danger small-btn" onClick={() => deleteCollection(c.id)}>Eliminar</button>
@@ -63,6 +64,6 @@ export default function Playlist() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

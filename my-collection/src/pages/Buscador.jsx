@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useMusic } from '../context/MusicContext.jsx';
 import { searchTracks } from '../services/api.js';
 import TarjetaCancion from '../components/TarjetaCancion.jsx';
-
+import './Buscador.css';
 
 export default function Buscador() {
   const [params, setParams] = useSearchParams();
@@ -42,7 +42,7 @@ export default function Buscador() {
   if (sort === 'title') shown = [...shown].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
-    <>
+    <div className="search-page">
       <h1>Explorar</h1>
       <form className="row filters" onSubmit={onSubmit}>
         <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Buscá canciones o artistas..." />
@@ -60,16 +60,16 @@ export default function Buscador() {
       </form>
 
       {!q ? <div className="state">Escribí algo para empezar a buscar 🎧</div> : (
-          <div className="grid">
-            {shown.map((t) => (
-              <TarjetaCancion key={t.id} track={t}>
-                {library.some((i) => i.id === t.id)
-                  ? <span className="muted small">✓ En tu biblioteca</span>
-                  : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
-              </TarjetaCancion>
-            ))}
-          </div>
+        <div className="grid">
+          {shown.map((t) => (
+            <TarjetaCancion key={t.id} track={t}>
+              {library.some((i) => i.id === t.id)
+                ? <span className="muted small">✓ En tu biblioteca</span>
+                : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
+            </TarjetaCancion>
+          ))}
+        </div>
       )}
-    </>
+    </div>
   );
 }

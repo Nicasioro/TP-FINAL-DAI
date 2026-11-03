@@ -1,0 +1,67 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.profile-page .profile-head {
+  display: flex;
+  align-items: flex-start;
+}
+
+.profile-page .favorite-list {
+  display: grid;
+  gap: 16px;
+}
+
+.profile-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.grow {
+  flex: 1;
+  min-width: 240px;
+}
+
+.avatar-edit {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.bio {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.profile-head .grow {
+  min-width: 0;
+  flex-basis: 240px;
+}
+
+.see-more {
+  display: block;
+  margin: 18px auto 0;
+}
+
+.fav-item { display: flex; }
+.fav-item > .card { flex: 1; min-width: 0; }

@@ -1,0 +1,18 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home-page .hero {
+  padding: 24px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #2a1f55, #4a1d46);
+}
+
+.home-hero-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}

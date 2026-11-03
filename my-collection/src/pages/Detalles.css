@@ -1,0 +1,26 @@
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-page .back-btn {
+  align-self: flex-start;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: 28px;
+  margin-top: 16px;
+}
+
+.info {
+  list-style: none;
+  padding: 0;
+}
+
+audio {
+  width: 100%;
+  margin: 8px 0;
+}

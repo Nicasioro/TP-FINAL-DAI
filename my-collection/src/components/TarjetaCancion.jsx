@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import './TarjetaCancion.css';
 export function Cover({ track, size = '' }) {
   return track.cover
     ? <img className={`cover ${size}`} src={track.cover} alt={`Carátula de ${track.title}`} loading="lazy" />

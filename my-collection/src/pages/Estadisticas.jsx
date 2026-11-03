@@ -1,6 +1,7 @@
 import { useMusic } from '../context/MusicContext.jsx';
 import { computeEstadisticas } from '../utils/Estadisticas.js';
 import Puntuacion from '../components/Puntuacion.jsx';
+import './Estadisticas.css';
 
 function Bars({ data }) {
   const max = Math.max(1, ...data.map((d) => d.value));

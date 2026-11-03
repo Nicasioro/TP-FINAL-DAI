@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import './Puntuacion.css';
 const ETIQUETAS = ['Malo', 'Regular', 'Bueno', 'Muy bueno', 'Excelente'];
 
 export default function Puntuacion({ value = 0, onChange, mostrarTexto = false }) {

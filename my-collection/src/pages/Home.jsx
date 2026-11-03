@@ -5,7 +5,7 @@ import { searchTracks } from '../services/api.js';
 import TarjetaCancion from '../components/TarjetaCancion.jsx';
 import ListaActividades from '../components/ListaActividades.jsx';
 import Avatar from '../components/Avatar.jsx';
-
+import './Home.css';
 
 export default function Home() {
   const { profile, library, collections, activity, addToBiblioteca } = useMusic();
@@ -13,7 +13,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const mainGenre = profile.favoriteGenres[0] || 'pop';
-
 
   useEffect(() => {
     let off = false;
@@ -29,9 +28,12 @@ export default function Home() {
   const inProgress = library.filter((i) => i.status === 'Escuchando');
 
   return (
-    <>
+    <div className="home-page">
       <section className="hero">
-            <div className="row"><Avatar value={profile.avatar} size={56} /><h1>Hola, {profile.name.split(' ')[0]}</h1></div>
+        <div className="home-hero-header">
+          <Avatar value={profile.avatar} size={56} />
+          <h1>Hola, {profile.name.split(' ')[0]}</h1>
+        </div>
         <p className="muted">Tenés {library.length} temas en tu biblioteca y {collections.length} playlists.</p>
         <div className="chips">
           {profile.favoriteGenres.map((g) => <Link key={g} className="chip" to={`/explorar?q=${encodeURIComponent(g)}`}>{g}</Link>)}
@@ -40,17 +42,15 @@ export default function Home() {
 
       <section>
         <h2>Recomendados para vos <span className="muted small">({mainGenre})</span></h2>
-       
-          <div className="grid">
-            {recs.map((t) => (
-              <TarjetaCancion key={t.id} track={t}>
-                {library.some((i) => i.id === t.id)
-                  ? <span className="muted small">✓ En tu biblioteca</span>
-                  : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
-              </TarjetaCancion>
-            ))}
-          </div>
-      
+        <div className="grid">
+          {recs.map((t) => (
+            <TarjetaCancion key={t.id} track={t}>
+              {library.some((i) => i.id === t.id)
+                ? <span className="muted small">✓ En tu biblioteca</span>
+                : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
+            </TarjetaCancion>
+          ))}
+        </div>
       </section>
 
       <section>
@@ -81,6 +81,6 @@ export default function Home() {
         <h2>Actividad reciente</h2>
         <ListaActividades items={activity.slice(0, 5)} />
       </section>
-    </>
+    </div>
   );
 }

@@ -1,3 +1,5 @@
+import './Avatar.css';
+
 export default function Avatar({ value, size = 96 }) {
   const isImg = /^(data:image|https?:)/.test(value || '');
   return (

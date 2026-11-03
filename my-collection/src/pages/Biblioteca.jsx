@@ -4,6 +4,7 @@ import { useMusic } from '../context/MusicContext.jsx';
 import { STATUSES } from '../utils/Estadisticas.js';
 import TarjetaCancion from '../components/TarjetaCancion.jsx';
 import Controles from '../components/Controles.jsx';
+import './Biblioteca.css';
 
 
 export default function Biblioteca() {
@@ -21,7 +22,7 @@ export default function Biblioteca() {
   if (sort === 'title') shown = [...shown].sort((a, b) => a.title.localeCompare(b.title));
 
   return (
-    <>
+    <div className="library-page">
       <h1>Mi biblioteca <span className="muted small">({library.length})</span></h1>
       <div className="row filters">
         <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Filtrar por título o artista..." />
@@ -36,14 +37,14 @@ export default function Biblioteca() {
         </select>
         <Link className="btn" to="/explorar">+ Agregar más</Link>
       </div>
-        <div className="grid wide">
-          {shown.map((t) => (
-            <TarjetaCancion key={t.id} track={t}>
-              <span className="badge status">{t.status}</span>
-              <Controles track={t} />
-            </TarjetaCancion>
-          ))}
-        </div>
-    </>
+      <div className="grid wide">
+        {shown.map((t) => (
+          <TarjetaCancion key={t.id} track={t}>
+            <span className="badge status">{t.status}</span>
+            <Controles track={t} />
+          </TarjetaCancion>
+        ))}
+      </div>
+    </div>
   );
 }

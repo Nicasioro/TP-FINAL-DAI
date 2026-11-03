@@ -1,0 +1,18 @@
+.activity {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activity li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.activity span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

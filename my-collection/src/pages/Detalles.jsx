@@ -5,6 +5,7 @@ import { getTrack } from '../services/api.js';
 import { Cover } from '../components/TarjetaCancion.jsx';
 import Controles from '../components/Controles.jsx';
 import { fmtDuration } from '../utils/Estadisticas.js';
+import './Detalles.css';
 
 export default function Detail() {
   const { id } = useParams();
@@ -33,30 +34,30 @@ export default function Detail() {
   const track = apiTrack ? { ...apiTrack } : saved;
 
   return (
-    <>
-      <button type="button" className="btn ghost small-btn" onClick={goBack}>← Volver</button>
-    
-        {track && (
-          <div className="detail">
-            <Cover track={track} size="big" />
-            <div>
-              <h1>{track.title}</h1>
-              <h3 className="muted">{track.artist}</h3>
-              {error && <p className="state error">⚠️ {error} Mostrando datos guardados.</p>}
-              <p><span className="badge">{track.genre}</span></p>
-              <ul className="info">
-                <li><b>Álbum:</b> {track.album || 'Sin datos'}</li>
-                <li><b>Año:</b> {track.year || 'Sin datos'}</li>
-                <li><b>Duración:</b> {fmtDuration(track.durationMs)}</li>
-                {track.country && <li><b>País:</b> {track.country}</li>}
-                <li><b>Puntuación general:</b> No disponible en la API</li>
-              </ul>
-              {track.previewUrl ? <audio controls src={track.previewUrl} /> : <p className="muted small">Sin preview de audio.</p>}
-              <h3>Mi colección</h3>
-              <Controles track={track} />
-            </div>
+    <div className="detail-page">
+      <button type="button" className="btn ghost small-btn back-btn" onClick={goBack}>← Volver</button>
+
+      {track && (
+        <div className="detail">
+          <Cover track={track} size="big" />
+          <div>
+            <h1>{track.title}</h1>
+            <h3 className="muted">{track.artist}</h3>
+            {error && <p className="state error">⚠️ {error} Mostrando datos guardados.</p>}
+            <p><span className="badge">{track.genre}</span></p>
+            <ul className="info">
+              <li><b>Álbum:</b> {track.album || 'Sin datos'}</li>
+              <li><b>Año:</b> {track.year || 'Sin datos'}</li>
+              <li><b>Duración:</b> {fmtDuration(track.durationMs)}</li>
+              {track.country && <li><b>País:</b> {track.country}</li>}
+              <li><b>Puntuación general:</b> No disponible en la API</li>
+            </ul>
+            {track.previewUrl ? <audio controls src={track.previewUrl} /> : <p className="muted small">Sin preview de audio.</p>}
+            <h3>Mi colección</h3>
+            <Controles track={track} />
           </div>
-        )}
-    </>
+        </div>
+      )}
+    </div>
   );
 }

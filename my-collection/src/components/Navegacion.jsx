@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useMusic } from '../context/MusicContext.jsx';
 import Avatar from './Avatar.jsx';
+import './Navegacion.css';
 
 const links = [
   ['/', 'Home'], ['/explorar', 'Explorar'], ['/biblioteca', 'Biblioteca'],

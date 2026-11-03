@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMusic } from '../context/MusicContext.jsx';
 import { STATUSES } from '../utils/Estadisticas.js';
 import Puntuacion from './Puntuacion.jsx';
+import './Controles.css';
 
 export default function Controles({ track }) {
   const { library, collections, addToBiblioteca, removeFromBiblioteca, updateItem, toggleFavorite, addToCollection } = useMusic();

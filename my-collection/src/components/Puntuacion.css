@@ -1,0 +1,43 @@
+.Puntuacion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.Puntuacion-estrellas {
+    display: inline-flex;
+}
+
+.Puntuacion button {
+    background: none;
+    border: 0;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: #3a3f52;
+    cursor: pointer;
+    padding: 0 2px;
+    transition: transform .15s, color .15s;
+}
+
+.Puntuacion button.on {
+    color: #fbbf24;
+    text-shadow: 0 0 10px #fbbf2455;
+}
+
+.Puntuacion button:not(:disabled):hover {
+    transform: scale(1.25);
+}
+
+.Puntuacion button:disabled {
+    cursor: default;
+}
+
+.Puntuacion-texto {
+    font-size: .85rem;
+    color: var(--muted);
+}
+
+.Puntuacion button {
+    font-size: 1.1rem;
+}

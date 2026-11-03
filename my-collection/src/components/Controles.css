@@ -1,0 +1,22 @@
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.controls .row select {
+    flex: 1;
+}
+
+.review-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.msg-ok {
+    color: #6ee7b7;
+    font-size: .85rem;
+    animation: fadeIn .25s ease both;
+}
