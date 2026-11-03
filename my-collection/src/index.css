@@ -57,3 +57,25 @@ textarea { width:100%; resize:vertical; margin-bottom:6px; }
 .avatar-edit { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
 .form { display:flex; flex-direction:column; gap:12px; margin-bottom:20px; } .form label { display:flex; flex-direction:column; gap:4px; color:var(--muted); font-size:.9rem; }
 @media (max-width:720px) { .detail { grid-template-columns:1fr; } .mc-header { justify-content:center; } }
+
+.bio, .card p, .card h3, .activity span { overflow-wrap:anywhere; word-break:break-word; }
+.profile-head .grow { min-width:0; flex-basis:240px; }
+
+.see-more { display:block; margin:18px auto 0; }
+.slide-in { animation:slideDown .35s ease both; }
+@keyframes slideDown { from { opacity:0; transform:translateY(-14px); } to { opacity:1; transform:none; } }
+.fav-item { display:flex; }
+.fav-item > .card { flex:1; min-width:0; }
+
+.Puntuacion { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.Puntuacion-estrellas { display:inline-flex; }
+.Puntuacion button { background:none; border:0; font-size:1.7rem; line-height:1; color:#3a3f52; cursor:pointer; padding:0 2px; transition:transform .15s, color .15s; }
+.Puntuacion button.on { color:#fbbf24; text-shadow:0 0 10px #fbbf2455; }
+.Puntuacion button:not(:disabled):hover { transform:scale(1.25); }
+.Puntuacion button:disabled { cursor:default; }
+.Puntuacion-texto { font-size:.85rem; color:var(--muted); }
+.tracklist .Puntuacion button { font-size:1.1rem; }
+
+.review-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.msg-ok { color:#6ee7b7; font-size:.85rem; animation:fadeIn .25s ease both; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }

@@ -8,15 +8,24 @@ export default function Controles({ track }) {
   const item = library.find((i) => i.id === track.id);
   const [review, setReview] = useState(item?.review || '');
   const [colId, setColId] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
   useEffect(() => setReview(item?.review || ''), [item?.review]);
+
+  useEffect(() => {
+    if (!mensaje) return;
+    const t = setTimeout(() => setMensaje(''), 2500);
+    return () => clearTimeout(t);
+  }, [mensaje]);
 
   if (!item) return <button className="btn" onClick={() => addToBiblioteca(track)}>+ Agregar a biblioteca</button>;
 
   const saveReview = (e) => {
     e.preventDefault();
     updateItem(item.id, { review: review.trim() }, `Escribiste una reseña de "${item.title}"`);
+    setMensaje(review.trim() ? 'Reseña guardada' : 'Reseña eliminada');
   };
+  const sinCambios = review.trim() === (item.review || '');
   const addCol = (e) => {
     e.preventDefault();
     if (colId) { addToCollection(colId, item); setColId(''); }
@@ -32,10 +41,13 @@ export default function Controles({ track }) {
           {item.favorite ? '♥ Favorito' : '♡ Favorito'}
         </button>
       </div>
-      <Puntuacion value={item.rating} onChange={(n) => updateItem(item.id, { rating: n }, `Puntuaste "${item.title}" con ${n} estrellas`)} />
+      <Puntuacion mostrarTexto value={item.rating} onChange={(n) => updateItem(item.id, { rating: n }, `Puntuaste "${item.title}" con ${n} estrellas`)} />
       <form onSubmit={saveReview}>
         <textarea value={review} onChange={(e) => setReview(e.target.value)} placeholder="Tu reseña personal..." rows={2} />
-        <button className="btn small-btn">Guardar reseña</button>
+        <div className="review-row">
+          <button className="btn small-btn" disabled={sinCambios}>Guardar reseña</button>
+          {mensaje && <span className="msg-ok" role="status">✓ {mensaje}</span>}
+        </div>
       </form>
       <form className="row" onSubmit={addCol}>
         <select value={colId} onChange={(e) => setColId(e.target.value)}>

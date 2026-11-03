@@ -51,9 +51,6 @@ export default function Detail() {
                 {track.country && <li><b>País:</b> {track.country}</li>}
                 <li><b>Puntuación general:</b> No disponible en la API</li>
               </ul>
-              <p className="muted">
-                {track.album ? `"${track.title}" es una canción de ${track.artist}, incluida en el álbum "${track.album}".` : 'Sin descripción disponible.'}
-              </p>
               {track.previewUrl ? <audio controls src={track.previewUrl} /> : <p className="muted small">Sin preview de audio.</p>}
               <h3>Mi colección</h3>
               <Controles track={track} />

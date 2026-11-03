@@ -13,6 +13,9 @@ export default function Perfil() {
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState(profile);
   const [photoError, setPhotoError] = useState('');
+  const [verTodos, setVerTodos] = useState(false);
+  const LIMITE_FAVS = 10;
+  const favsVisibles = verTodos ? s.favorites : s.favorites.slice(0, LIMITE_FAVS);
   const change = (k) => (e) => setForm({ ...form, [k]: e.target.value });
 
   const onPhoto = async (e) => {
@@ -46,7 +49,7 @@ export default function Perfil() {
         <div className="grow">
           <h1>{profile.name}</h1>
           <p className="muted">{profile.username} · Miembro desde {fmtDate(profile.joined)}</p>
-          <p>{profile.bio}</p>
+          <p className="bio">{profile.bio}</p>
           <div className="chips">
             {profile.favoriteGenres.map((g) => <Link key={g} to={`/explorar?q=${encodeURIComponent(g)}`} className="chip">{g}</Link>)}
           </div>
@@ -70,7 +73,7 @@ export default function Perfil() {
             </div>
           </div>
           <label>Nombre<input value={form.name} onChange={change('name')} required /></label>
-          <label>Bio<textarea value={form.bio} onChange={change('bio')} rows={3} /></label>
+          <label>Bio<textarea value={form.bio} onChange={change('bio')} rows={3} maxLength={200} /></label>
           <label>Géneros favoritos (separados por coma)<input value={form.favoriteGenres} onChange={change('favoriteGenres')} /></label>
           <div className="row"><button className="btn">Guardar</button></div>
         </form>
@@ -86,7 +89,22 @@ export default function Perfil() {
       <section>
         <h2>Canciones favoritas</h2>
         {s.favorites.length
-          ? <div className="grid">{s.favorites.slice(0, 10).map((t) => <TarjetaCancion key={t.id} track={t} />)}</div>
+          ? (
+            <>
+              <div className="grid">
+                {favsVisibles.map((t, i) => (
+                  <div key={t.id} className={i >= LIMITE_FAVS ? 'fav-item slide-in' : 'fav-item'}>
+                    <TarjetaCancion track={t} />
+                  </div>
+                ))}
+              </div>
+              {s.favorites.length > LIMITE_FAVS && (
+                <button className="btn ghost see-more" onClick={() => setVerTodos(!verTodos)}>
+                  {verTodos ? 'Ver menos ▲' : `Ver más (${s.favorites.length - LIMITE_FAVS}) ▼`}
+                </button>
+              )}
+            </>
+          )
           : <p className="muted">Sin favoritos todavía.</p>}
       </section>
 
