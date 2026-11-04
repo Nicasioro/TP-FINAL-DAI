@@ -59,7 +59,7 @@ export default function Buscador() {
         </select>
       </form>
 
-      {!q ? <div className="state">Escribí algo para empezar a buscar 🎧</div> : (
+      {!q ? <div className="state">Escribí algo para empezar a buscar </div> : (
         <div className="grid">
           {shown.map((t) => (
             <TarjetaCancion key={t.id} track={t}>

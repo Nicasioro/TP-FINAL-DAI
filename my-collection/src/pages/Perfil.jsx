@@ -37,7 +37,7 @@ export default function Perfil() {
     updateProfile({
       name: form.name.trim() || profile.name,
       bio: form.bio,
-      avatar: form.avatar || '🎧',
+      avatar: form.avatar ,
       favoriteGenres: String(form.favoriteGenres).split(',').map((g) => g.trim()).filter(Boolean),
     });
     setEditing(false);
@@ -69,7 +69,7 @@ export default function Perfil() {
                 Subir foto
                 <input type="file" accept="image/*" onChange={onPhoto} hidden />
               </label>{' '}
-              <button type="button" className="btn ghost small-btn" onClick={() => setForm({ ...form, avatar: '🎧' })}>Quitar foto</button>
+              <button type="button" className="btn ghost small-btn" onClick={() => setForm({ ...form, avatar: '' })}>Quitar foto</button>
               {photoError && <p className="state error">{photoError}</p>}
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function Perfil() {
         <h2>Playlists</h2>
         <div className="grid">
           {collections.map((c) => (
-            <Link key={c.id} to="/colecciones" className="card playlist-card"><h3>🎶 {c.name}</h3><p className="muted">{c.trackIds.length} canciones</p></Link>
+            <Link key={c.id} to="/colecciones" className="card playlist-card"><h3> {c.name}</h3><p className="muted">{c.trackIds.length} canciones</p></Link>
           ))}
         </div>
       </section>

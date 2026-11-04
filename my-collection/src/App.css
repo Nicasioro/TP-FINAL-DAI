@@ -4,8 +4,8 @@
   --line: #2a2f3e;
   --text: #eef0f6;
   --muted: #9aa3b8;
-  --accent: #8b5cf6;
-  --accent2: #ec4899;
+  --accent: #1900ff;
+  --accent2: #f0e000;
 }
 
 * { box-sizing: border-box; }
@@ -41,8 +41,8 @@ textarea {
 }
 
 .btn {
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  color: #fff;
+  background: linear-gradient(90deg, var(--accent2));
+  color: #000;
   border: 0;
   padding: 9px 16px;
   border-radius: 10px;
@@ -53,14 +53,7 @@ textarea {
 }
 
 .btn:disabled { opacity: .5; cursor: not-allowed; }
-.btn.ghost {
-  background: transparent;
-  border: 1px solid var(--line);
-}
-.btn.ghost.fav {
-  color: var(--accent2);
-  border-color: var(--accent2);
-}
+
 .btn.danger {
   background: #3b1820;
   color: #fca5a5;

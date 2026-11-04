@@ -46,7 +46,7 @@ export default function Playlist() {
           return (
             <section key={c.id} className="card playlist-card">
               <div className="row between">
-                <h3>🎶 {c.name} <span className="muted small">({tracks.length})</span></h3>
+                <h3> {c.name} <span className="muted small">({tracks.length})</span></h3>
                 <button className="btn danger small-btn" onClick={() => deleteCollection(c.id)}>Eliminar</button>
               </div>
               {tracks.length ? (

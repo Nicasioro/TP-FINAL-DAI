@@ -70,7 +70,7 @@ export default function Home() {
         <div className="grid">
           {collections.slice(0, 3).map((c) => (
             <Link key={c.id} to="/colecciones" className="card playlist-card">
-              <h3>🎶 {c.name}</h3>
+              <h3> {c.name}</h3>
               <p className="muted">{c.trackIds.length} canciones</p>
             </Link>
           ))}

@@ -12,7 +12,7 @@ export default function Navegacion() {
   const { profile } = useMusic();
   return (
     <header className="mc-header">
-      <span className="mc-logo">🎵 My Collection</span>
+      <span className="mc-logo"> My Collection de Boquita </span>
       <nav className='mc-nav'>
         {links.map(([to, label]) => (
           <NavLink key={to} to={to} end={to === '/'} className={({ isActive }) => (isActive ? 'active' : '')}>
