@@ -50,7 +50,6 @@ export default function Detail() {
               <li><b>Año:</b> {track.year || 'Sin datos'}</li>
               <li><b>Duración:</b> {fmtDuration(track.durationMs)}</li>
               {track.country && <li><b>País:</b> {track.country}</li>}
-              <li><b>Puntuación general:</b> No disponible en la API</li>
             </ul>
             {track.previewUrl ? <audio controls src={track.previewUrl} /> : <p className="muted small">Sin preview de audio.</p>}
             <h3>Mi colección</h3>
