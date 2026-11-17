@@ -65,6 +65,8 @@ export function MusicProvider({ children }) {
       }, `Eliminaste "${it?.title}" de tu biblioteca`);
     });
 
+  const removeFromBiblioteca = removeFromLibrary;
+
   const updateItem = (id, patch, text) =>
     setData((d) => withLog({ ...d, library: d.library.map((i) => (i.id === id ? { ...i, ...patch } : i)) }, text));
 
@@ -107,7 +109,7 @@ export function MusicProvider({ children }) {
   const resetData = () => setData(initial);
 
   const value = {
-    ...data, addToBiblioteca, removeFromLibrary, updateItem, toggleFavorite,
+    ...data, addToBiblioteca, removeFromLibrary, removeFromBiblioteca, updateItem, toggleFavorite,
     createCollection, deleteCollection, addToCollection, removeFromCollection, updateProfile, resetData,
   };
   return <MusicContext.Provider value={value}>{children}</MusicContext.Provider>;

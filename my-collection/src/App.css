@@ -71,13 +71,13 @@ textarea {
   font-size: .75rem;
   padding: 2px 10px;
   border-radius: 99px;
-  background: #2b2547;
-  color: #c4b5fd;
+  background: #fbff00;
+  color: #3300ff;
 }
 .badge.status {
   align-self: flex-start;
-  background: #1f3a35;
-  color: #6ee7b7;
+  background: #1a0468;
+  color: #d4eb0b;
 }
 
 .row {
