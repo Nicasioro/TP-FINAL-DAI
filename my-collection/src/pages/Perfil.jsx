@@ -10,9 +10,10 @@ import './Perfil.css';
 
 export default function Perfil() {
   const { profile, library, collections, activity, updateProfile, resetData } = useMusic();
-  const s = computeEstadisticas(library, collections);
+  const safeProfile = profile || { name: 'Usuario', username: '@usuario', avatar: '/perfil.png', bio: '', favoriteGenres: [], joined: new Date().toISOString() };
+  const s = computeEstadisticas(library || [], collections || []);
   const [editing, setEditing] = useState(false);
-  const [form, setForm] = useState(profile);
+  const [form, setForm] = useState(safeProfile);
   const [photoError, setPhotoError] = useState('');
   const [verTodos, setVerTodos] = useState(false);
   const LIMITE_FAVS = 10;
@@ -35,9 +36,9 @@ export default function Perfil() {
   const save = (e) => {
     e.preventDefault();
     updateProfile({
-      name: form.name.trim() || profile.name,
+      name: form.name.trim() || safeProfile.name,
       bio: form.bio,
-      avatar: form.avatar ,
+      avatar: form.avatar,
       favoriteGenres: String(form.favoriteGenres).split(',').map((g) => g.trim()).filter(Boolean),
     });
     setEditing(false);
@@ -46,16 +47,16 @@ export default function Perfil() {
   return (
     <div className="profile-page">
       <section className="profile-head card">
-        <Avatar value={profile.avatar} size={96} />
+        <Avatar value={safeProfile.avatar} size={96} />
         <div className="grow">
-          <h1>{profile.name}</h1>
-          <p className="muted">{profile.username} · Miembro desde {fmtDate(profile.joined)}</p>
-          <p className="bio">{profile.bio}</p>
+          <h1>{safeProfile.name}</h1>
+          <p className="muted">{safeProfile.username} · Miembro desde {fmtDate(safeProfile.joined)}</p>
+          <p className="bio">{safeProfile.bio}</p>
           <div className="chips">
-            {profile.favoriteGenres.map((g) => <Link key={g} to={`/explorar?q=${encodeURIComponent(g)}`} className="chip">{g}</Link>)}
+            {(safeProfile.favoriteGenres || []).map((g) => <Link key={g} to={`/explorar?q=${encodeURIComponent(g)}`} className="chip">{g}</Link>)}
           </div>
         </div>
-        <button className="btn ghost" onClick={() => { setForm({ ...profile, favoriteGenres: profile.favoriteGenres.join(', ') }); setPhotoError(''); setEditing(!editing); }}>
+        <button className="btn ghost" onClick={() => { setForm({ ...safeProfile, favoriteGenres: (safeProfile.favoriteGenres || []).join(', ') }); setPhotoError(''); setEditing(!editing); }}>
           {editing ? 'Cancelar' : 'Editar perfil'}
         </button>
       </section>
@@ -83,7 +84,7 @@ export default function Perfil() {
       <div className="grid kpis">
         <div className="card kpi"><small>Canciones</small><strong>{s.total}</strong></div>
         <div className="card kpi"><small>Favoritos</small><strong>{s.favorites.length}</strong></div>
-        <div className="card kpi"><small>Playlists</small><strong>{collections.length}</strong></div>
+        <div className="card kpi"><small>Playlists</small><strong>{(collections || []).length}</strong></div>
         <div className="card kpi"><small>Promedio</small><strong>{s.avg ? s.avg.toFixed(1) : '—'}</strong></div>
       </div>
 
@@ -112,7 +113,7 @@ export default function Perfil() {
       <section>
         <h2>Playlists</h2>
         <div className="grid">
-          {collections.map((c) => (
+          {(collections || []).map((c) => (
             <Link key={c.id} to="/colecciones" className="card playlist-card"><h3> {c.name}</h3><p className="muted">{c.trackIds.length} canciones</p></Link>
           ))}
         </div>
@@ -120,7 +121,7 @@ export default function Perfil() {
 
       <section>
         <h2>Actividad reciente</h2>
-        <ListaActividades items={activity.slice(0, 8)} />
+        <ListaActividades items={(activity || []).slice(0, 8)} />
       </section>
 
       <button className="btn danger small-btn" onClick={() => window.confirm('¿Restaurar los datos iniciales?') && resetData()}>

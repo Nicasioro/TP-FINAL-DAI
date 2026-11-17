@@ -12,7 +12,8 @@ export default function Home() {
   const [recs, setRecs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const mainGenre = profile.favoriteGenres[0] || 'pop';
+  const safeProfile = profile || { avatar: '/perfil.png', name: 'Usuario', favoriteGenres: [] };
+  const mainGenre = safeProfile.favoriteGenres?.[0] || 'pop';
 
   useEffect(() => {
     let off = false;
@@ -24,33 +25,35 @@ export default function Home() {
     return () => { off = true; };
   }, [mainGenre]);
 
-  const favorites = library.filter((i) => i.favorite).slice(0, 4);
-  const inProgress = library.filter((i) => i.status === 'Escuchando');
+  const favorites = (library || []).filter((i) => i.favorite).slice(0, 4);
+  const inProgress = (library || []).filter((i) => i.status === 'Escuchando');
 
   return (
     <div className="home-page">
       <section className="hero">
         <div className="home-hero-header">
-          <Avatar value={profile.avatar} size={56} />
-          <h1>Hola, {profile.name.split(' ')[0]}</h1>
+          <Avatar value={safeProfile.avatar} size={56} />
+          <h1>Hola, {safeProfile.name?.split(' ')[0] || 'Usuario'}</h1>
         </div>
-        <p className="muted">Tenés {library.length} temas en tu biblioteca y {collections.length} playlists.</p>
+        <p className="muted">Tenés {(library || []).length} temas en tu biblioteca y {(collections || []).length} playlists.</p>
         <div className="chips">
-          {profile.favoriteGenres.map((g) => <Link key={g} className="chip" to={`/explorar?q=${encodeURIComponent(g)}`}>{g}</Link>)}
+          {(safeProfile.favoriteGenres || []).map((g) => <Link key={g} className="chip" to={`/explorar?q=${encodeURIComponent(g)}`}>{g}</Link>)}
         </div>
       </section>
 
       <section>
         <h2>Recomendados para vos <span className="muted small">({mainGenre})</span></h2>
-        <div className="grid">
-          {recs.map((t) => (
-            <TarjetaCancion key={t.id} track={t}>
-              {library.some((i) => i.id === t.id)
-                ? <span className="muted small">✓ En tu biblioteca</span>
-                : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
-            </TarjetaCancion>
-          ))}
-        </div>
+        {loading ? <p className="muted">Cargando recomendaciones…</p> : error ? <p className="state error">{error}</p> : (
+          <div className="grid">
+            {recs.map((t) => (
+              <TarjetaCancion key={t.id} track={t}>
+                {(library || []).some((i) => i.id === t.id)
+                  ? <span className="muted small">✓ En tu biblioteca</span>
+                  : <button className="btn small-btn" onClick={() => addToBiblioteca(t)}>+ Biblioteca</button>}
+              </TarjetaCancion>
+            ))}
+          </div>
+        )}
       </section>
 
       <section>
@@ -68,7 +71,7 @@ export default function Home() {
       <section>
         <h2>Playlists destacadas</h2>
         <div className="grid">
-          {collections.slice(0, 3).map((c) => (
+          {(collections || []).slice(0, 3).map((c) => (
             <Link key={c.id} to="/colecciones" className="card playlist-card">
               <h3> {c.name}</h3>
               <p className="muted">{c.trackIds.length} canciones</p>
@@ -79,7 +82,7 @@ export default function Home() {
 
       <section>
         <h2>Actividad reciente</h2>
-        <ListaActividades items={activity.slice(0, 5)} />
+        <ListaActividades items={(activity || []).slice(0, 5)} />
       </section>
     </div>
   );
